@@ -4,12 +4,12 @@
 #include <string.h>
 #include <math.h>
 
-struct  data
+struct      data
 {
     int     w;
     int     h;
     char    c;
-}       data;
+}           data;
 
 struct  circle
 {
@@ -73,8 +73,11 @@ int main(int argc, char **argv)
     printf ("h : %d\n", data.h);
     printf ("w : %d\n", data.w);
     printf ("c : %c\n", data.c);
-    if (data.w < 0 || data.w > 300 || data.h < 0 || data.h > 300)   
+    if (data.w < 0 || data.w > 300 || data.h < 0 || data.h > 300) 
+    {
         quit (fp);
+        return (1);
+    }
     // fill the background
     memset (result, data.c, data.w * data.h);
     while ((ret = fscanf(fp, "%c %f %f %f %c", &circle.C, &circle.X,
@@ -86,7 +89,10 @@ int main(int argc, char **argv)
         printf ("radius :%f\n", circle.R );
         printf ("char :%c\n", circle.CHAR );
         if (circle.R < 0 || (circle.C != 'c' && circle.C != 'C'))
+        {
             quit (fp);
+            return (1);
+        }
         for (int y = 0; y <= data.h; y++)
         {
             for (int x = 0; x <= data.w; x++)
