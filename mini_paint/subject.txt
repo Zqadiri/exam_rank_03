@@ -67,5 +67,3 @@ You should find our_mini_paint to help you test yours with some operation_file.e
 Hint:
 If you've got 2 points are defined as (Xa,Ya) and (Xb,Yb)
 You can get the distance between the two points with this formula: srqt((Xa - Xb) * (Xa - Xb) + (Ya - Yb) * (Ya - Yb))
-
-
