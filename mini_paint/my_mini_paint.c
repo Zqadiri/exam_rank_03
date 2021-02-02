@@ -48,7 +48,7 @@ int main(int argc, char **argv)
 {
     struct circle circle;
     struct data data;
-    char result[100000];
+    char result[90000]; // 300 * 300
     FILE *fp;
     int ret = 0; // fscanf returns the number of items of the argument list successfully filled.
 
@@ -80,7 +80,7 @@ int main(int argc, char **argv)
     }
     // fill the background
     memset (result, data.c, data.w * data.h);
-    while ((ret = fscanf(fp, "%c %f %f %f %c", &circle.C, &circle.X,
+    while ((ret = fscanf(fp, "%c %f %f %f %c\n", &circle.C, &circle.X,
     &circle.Y, &circle.R, &circle.CHAR)) == 5)
     {
         printf ("c :%c\n", circle.C );
