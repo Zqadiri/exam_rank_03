@@ -59,7 +59,11 @@ int main(int argc, char **argv)
       	write(1, "Error: argument\n", 16);
 		return (1);
     }
-    (!(fp = fopen(argv[1] ,"r"))) ? quit(fp) : 1;
+    if (!(fp = fopen(argv[1] ,"r")))
+    {
+        quit(fp);
+        return (1);
+    }
     /*
     ** Parsing :
     */
@@ -70,11 +74,15 @@ int main(int argc, char **argv)
     ** WIDTH HEIGHT BACKGROUND_CHAR 
     */
     if (fscanf(fp, "%d %d %c\n", &data.w, &data.h, &data.c) != 3)
+    {
         quit(fp);
+        return (1);
+    }
+        
     // printf ("h : %d\n", data.h);
     // printf ("w : %d\n", data.w);
     // printf ("c : %c\n", data.c);
-    if (data.w < 0 || data.w > 300 || data.h < 0 || data.h > 300) 
+    if (data.w <= 0 || data.w > 300 || data.h <= 0 || data.h > 300) 
     {
         quit (fp);
         return (1);
@@ -94,9 +102,9 @@ int main(int argc, char **argv)
             quit (fp);
             return (1);
         }
-        for (int y = 0; y <= data.h; y++)
+        for (int y = 0; y < data.h; y++)
         {
-            for (int x = 0; x <= data.w; x++)
+            for (int x = 0; x < data.w; x++)
             {
                 if (fill_circle(x, y, &circle))
                     result[y * data.w + x]  = circle.CHAR;
@@ -108,7 +116,6 @@ int main(int argc, char **argv)
         quit (fp);
         return (1);
     }
-		
     for (int i = 0; i < data.h; i++)
 	{
 		write(1, result + data.w * i, data.w);
