@@ -39,7 +39,7 @@ int fill_circle(int x, int y, struct circle *circle)
     dist = sqrtf((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
     if (dist >  circle->R)
         return (0);
-    if (circle->R - dist >  1)
+    if (circle->R - dist <  1)
         return (1);
     if (circle->C == 'C')
         return (1);
@@ -63,7 +63,6 @@ int main(int argc, char **argv)
     /*
     ** Parsing :
     */
-
     /*
     ** int fscanf(FILE *stream, const char *format, ...)
     ** stream Pointer to a FILE object that identifies the input stream to read data from.
@@ -72,9 +71,9 @@ int main(int argc, char **argv)
     */
     if (fscanf(fp, "%d %d %c\n", &data.w, &data.h, &data.c) != 3)
         quit(fp);
-    printf ("h : %d\n", data.h);
-    printf ("w : %d\n", data.w);
-    printf ("c : %c\n", data.c);
+    // printf ("h : %d\n", data.h);
+    // printf ("w : %d\n", data.w);
+    // printf ("c : %c\n", data.c);
     if (data.w < 0 || data.w > 300 || data.h < 0 || data.h > 300) 
     {
         quit (fp);
@@ -85,11 +84,11 @@ int main(int argc, char **argv)
     while ((ret = fscanf(fp, "%c %f %f %f %c\n", &circle.C, &circle.X,
     &circle.Y, &circle.R, &circle.CHAR)) == 5)
     {
-        printf ("c :%c\n", circle.C );
-        printf ("x :%f\n", circle.X );
-        printf ("y :%f\n", circle.Y );
-        printf ("radius :%f\n", circle.R );
-        printf ("char :%c\n", circle.CHAR );
+        // printf ("c :%c\n", circle.C );
+        // printf ("x :%f\n", circle.X );
+        // printf ("y :%f\n", circle.Y );
+        // printf ("radius :%f\n", circle.R );
+        // printf ("char :%c\n", circle.CHAR );
         if (circle.R < 0 || (circle.C != 'c' && circle.C != 'C'))
         {
             quit (fp);
@@ -104,6 +103,12 @@ int main(int argc, char **argv)
             }
         }
     }
+    if (ret != EOF)
+    {
+        quit (fp);
+        return (1);
+    }
+		
     for (int i = 0; i < data.h; i++)
 	{
 		write(1, result + data.w * i, data.w);
