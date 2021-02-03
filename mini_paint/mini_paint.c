@@ -77,8 +77,7 @@ int main(int argc, char **argv)
     {
         quit(fp);
         return (1);
-    }
-        
+    } 
     // printf ("h : %d\n", data.h);
     // printf ("w : %d\n", data.w);
     // printf ("c : %c\n", data.c);
