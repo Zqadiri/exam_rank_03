@@ -59,9 +59,9 @@ int     main(int argc, char **argv)
     */
     if (fscanf(fp, "%d %d %c\n", &data.w, &data.h, &data.c) != 3)
         quit(fp);
-    printf ("h : %d\n", data.h);
-    printf ("w : %d\n", data.w);
-    printf ("c : %c\n", data.c);
+    // printf ("h : %d\n", data.h);
+    // printf ("w : %d\n", data.w);
+    // printf ("c : %c\n", data.c);
     if (data.w < 0 || data.w > 300 || data.h < 0 || data.h > 300) 
     {
         quit (fp);
