@@ -41,7 +41,9 @@ int fill_circle(int x, int y, struct circle *circle)
         return (0);
     if (circle->R - dist >  1)
         return (1);
-    return (1);
+    if (circle->C == 'C')
+        return (1);
+    return (0);
 }
 
 int main(int argc, char **argv)
