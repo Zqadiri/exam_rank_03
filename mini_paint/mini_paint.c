@@ -60,47 +60,17 @@ int main(int argc, char **argv)
 		return (1);
     }
     if (!(fp = fopen(argv[1] ,"r")))
-    {
-        quit(fp);
-        return (1);
-    }
-    /*
-    ** Parsing :
-    */
-    /*
-    ** int fscanf(FILE *stream, const char *format, ...)
-    ** stream Pointer to a FILE object that identifies the input stream to read data from.
-    ** C string that contains a sequence of characters that control how characters extracted from the stream are treated.
-    ** WIDTH HEIGHT BACKGROUND_CHAR 
-    */
+        return (quit(fp));
     if (fscanf(fp, "%d %d %c\n", &data.w, &data.h, &data.c) != 3)
-    {
-        quit(fp);
-        return (1);
-    } 
-    // printf ("h : %d\n", data.h);
-    // printf ("w : %d\n", data.w);
-    // printf ("c : %c\n", data.c);
+        return (quit(fp));
     if (data.w <= 0 || data.w > 300 || data.h <= 0 || data.h > 300) 
-    {
-        quit (fp);
-        return (1);
-    }
-    // fill the background
+        return (quit(fp));
     memset (result, data.c, data.w * data.h);
     while ((ret = fscanf(fp, "%c %f %f %f %c\n", &circle.C, &circle.X,
     &circle.Y, &circle.R, &circle.CHAR)) == 5)
     {
-        // printf ("c :%c\n", circle.C );
-        // printf ("x :%f\n", circle.X );
-        // printf ("y :%f\n", circle.Y );
-        // printf ("radius :%f\n", circle.R );
-        // printf ("char :%c\n", circle.CHAR );
         if (circle.R < 0 || (circle.C != 'c' && circle.C != 'C'))
-        {
-            quit (fp);
-            return (1);
-        }
+            return (quit(fp));
         for (int y = 0; y < data.h; y++)
         {
             for (int x = 0; x < data.w; x++)
@@ -111,10 +81,7 @@ int main(int argc, char **argv)
         }
     }
     if (ret != EOF)
-    {
-        quit (fp);
-        return (1);
-    }
+        return (quit(fp));
     for (int i = 0; i < data.h; i++)
 	{
 		write(1, result + data.w * i, data.w);
